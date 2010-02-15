@@ -35,6 +35,7 @@ SUBDIRS   = plugin_coreplugin \
             plugin_qmleditor \
             plugin_ananasprojectmanager \
             plugin_directoryeditor \
+            plugin_journaleditor \
             plugin_fieldeditor \
             plugin_qmlprojectmanager \
             debugger/dumper.pro
@@ -197,6 +198,14 @@ plugin_directoryeditor.depends += plugin_help
 plugin_directoryeditor.depends += plugin_qmleditor
 plugin_directoryeditor.depends += plugin_ananasprojectmanager
 plugin_directoryeditor.depends += plugin_fieldeditor
+
+plugin_journaleditor.subdir = journaleditor
+plugin_journaleditor.depends = plugin_texteditor
+plugin_journaleditor.depends += plugin_projectexplorer
+plugin_journaleditor.depends += plugin_help
+plugin_journaleditor.depends += plugin_qmleditor
+plugin_journaleditor.depends += plugin_ananasprojectmanager
+plugin_journaleditor.depends += plugin_fieldeditor
 
 plugin_fieldeditor.subdir = fieldeditor
 plugin_fieldeditor.depends = plugin_texteditor

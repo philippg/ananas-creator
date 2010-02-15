@@ -348,6 +348,8 @@ public:
     QByteArray binary();
     long nextID();
     bool modified();
+    bool moveUp();
+    bool moveDown();
     void setModified();
     long getDefaultFormId(DomCfgItem *owner,int actiontype,int mode);
     void setText(const QString &name,const QString &value );
