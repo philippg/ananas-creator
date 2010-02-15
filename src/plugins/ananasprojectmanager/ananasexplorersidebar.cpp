@@ -340,10 +340,22 @@ QDomNode node = item->node();
           }
         }
         if(node.nodeName()==md_journal){
-//            QString titlePattern = tr("Journal $");
-//
-//            DomCfgItem *journals=item->parent();
-//            //DomCfgItem* journal = journals->n
+            QString titlePattern = tr("Journal $");
+
+            DomCfgItem *journals=item->parent();
+            DomCfgItem* journal = journals->newJournal();
+            Core::EditorManager* manager = Core::EditorManager::instance();
+
+            QString cfgName = journal->cfgName();
+            Core::IEditor* editor = manager->openEditorWithContents("Journal Editor", &cfgName,"");
+            if (editor) {
+             manager->activateEditor(editor);
+
+            if (!QMetaObject::invokeMethod(editor->widget(), "setData",Qt::DirectConnection,
+             Q_ARG(DomCfgItem*, journal)))
+                qCritical() << "Can't invoke method!";
+             connect(manager,SIGNAL(editorsClosed(QList<Core::IEditor*>)),editor->widget(),SLOT(updateMD(QList<Core::IEditor*>)));
+        }
         }
     }
 
